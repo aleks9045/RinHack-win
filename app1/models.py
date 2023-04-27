@@ -12,25 +12,31 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ["email"]
 
     def __str__(self):
-        return str(self.id)
+        return str(self.username)
+
+
+class UserUser(models.Model):
+    username = models.CharField(max_length=255, blank=True)
+    email = models.EmailField(max_length=255, unique=True, blank=True)
+    fp = models.TextField(blank=True)
+
+    def __str__(self):
+        return str(self.username)
 
 
 class Files(models.Model):
-    number = models.AutoField(primary_key=True)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-    name = models.CharField('name', max_length=255)
-    weight = models.IntegerField('weight')
-    extension = models.CharField('extension', max_length=18)
-    upload_date = models.DateTimeField('date', auto_now=True)
+    email = models.CharField(max_length=32, blank=True)
+    name = models.CharField('name', max_length=255, blank=True)
+    weight = models.IntegerField('weight', blank=True)
+    extension = models.CharField('extension', max_length=18, blank=True)
+    upload_date = models.DateTimeField('date', auto_now=True, blank=True)
 
     def __str__(self):
-        return str(self.user)
+        return str(self.email)
 
 
-class UserData(models.Model):
-    fp = models.CharField(max_length=64)
+class Hshs(models.Model):
+    fp = models.TextField()
 
     def __str__(self):
         return str(self.fp)
-
-
