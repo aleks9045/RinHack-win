@@ -23,7 +23,6 @@ class UserDataView(APIView):
             ip=request.data['ip'],
             lang=request.data['lang'],
             all_lang=request.data['all_lang'],
-            plugins=request.data['plugins'],
             browser=request.data['browser'],
             OS=request.data['OS'],
             display=request.data['display'],
