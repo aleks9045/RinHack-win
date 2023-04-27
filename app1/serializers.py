@@ -13,3 +13,9 @@ class Files_Serialaizer(ModelSerializer):
     class Meta:
         model = Files
         fields = ('number', 'user', 'name', 'weight', 'extension', 'upload_date')
+
+
+class UserDataSerialaizer(ModelSerializer):
+    class Meta:
+        model = Files
+        fields = ('ip', 'lang', 'all_lang', 'plugins', 'browser', 'OS', 'display', 'cords')
