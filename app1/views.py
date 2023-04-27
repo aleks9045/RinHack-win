@@ -21,13 +21,8 @@ class UserDataView(APIView):
 
     def post(self, request):
         new_post = UserData.objects.create(
-            ip=request.data['ip'],
-            lang=request.data['lang'],
-            all_lang=request.data['all_lang'],
-            fp=request.data['fp'],
-            display=request.data['display'],
-            cords=request.data['cords']
+            fp=request.data['fp']
         )
         old_posts = UserData.objects.all().values()
-        main_algorithm(model_to_dict(new_post), old_posts)
+        main_algorithm(model_to_dict(new_post), list(old_posts))
         return Response({'response': model_to_dict(new_post)})

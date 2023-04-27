@@ -1,4 +1,5 @@
-def main_algorithm(new_post, old_posts):
-    # for i in new_post.items():
-    #     print(i)
-    pass
+import hashlib
+def main_algorithm(new_data, old_data):
+
+    # print(hashlib.sha256(new_data.encode('utf-8')).hexdigest())
+    print(new_data, old_data)

@@ -28,12 +28,7 @@ class Files(models.Model):
 
 
 class UserData(models.Model):
-    ip = models.CharField(max_length=32)
-    lang = models.CharField(max_length=64)
-    all_lang = models.CharField(max_length=2048)
     fp = models.CharField(max_length=64)
-    display = models.CharField(max_length=16)
-    cords = models.CharField(max_length=64)
 
     def __str__(self):
         return str(self.ip)
