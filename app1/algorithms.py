@@ -1,5 +1,9 @@
-import hashlib
-def main_algorithm(new_data, old_data):
+import hashlib, json
 
-    # print(hashlib.sha256(new_data.encode('utf-8')).hexdigest())
-    print(new_data, old_data)
+
+def main_algorithm(new, old):
+    # new = str(new['fp']).replace("'", '"').replace('True', 'true').replace('False', 'false')
+    # print(new)
+    # jsn = json.loads(new)
+    # print(jsn)
+    pass

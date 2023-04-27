@@ -31,4 +31,6 @@ class UserData(models.Model):
     fp = models.CharField(max_length=64)
 
     def __str__(self):
-        return str(self.ip)
+        return str(self.fp)
+
+
