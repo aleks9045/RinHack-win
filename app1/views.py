@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from .serializers import Files_Serialaizer
 from .models import Files, UserData
+from .algorithms import main_algorithm
 
 
 class Files_ViewSet(ModelViewSet):
@@ -23,9 +24,10 @@ class UserDataView(APIView):
             ip=request.data['ip'],
             lang=request.data['lang'],
             all_lang=request.data['all_lang'],
-            browser=request.data['browser'],
-            OS=request.data['OS'],
+            fp=request.data['fp'],
             display=request.data['display'],
             cords=request.data['cords']
         )
+        old_posts = UserData.objects.all().values()
+        main_algorithm(model_to_dict(new_post), old_posts)
         return Response({'response': model_to_dict(new_post)})
