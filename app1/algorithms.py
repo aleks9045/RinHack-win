@@ -8,6 +8,7 @@ def main_algorithm(new, old):
     stroka = ''
     for iterator in jsn:
         stroka += str(jsn[iterator]['value'])
+        print(stroka)
     hsh = hashlib.sha3_512(stroka.encode('utf-8')).hexdigest()
     for i in old:
         if i['fp'] == hsh:
@@ -19,6 +20,6 @@ def main_algorithm(new, old):
                 files_data = ''
             else:
                 user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'fp'))
-                files_data = list(Files.objects.all().filter(email=user_data[0]['email']).values().all())
+                files_data = list(Files.objects.all().filter(fp=user_data[0]['fp']).values().all())
             return [True, user_data, files_data]
     return [False, hsh]
