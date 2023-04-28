@@ -27,10 +27,7 @@ class UserUserView(APIView):
 class FileUploadViewSet(ModelViewSet):
     queryset = Files.objects.all()
     serializer_class = Files_Serialaizer
-    parser_classes = (MultiPartParser, FormParser,)
 
-    def perform_create(self, serializer):
-        serializer.save(file=self.request.data.get('file'))
 
     @action(detail=False, methods=['post'])
     def download(self, request):
