@@ -1,6 +1,6 @@
 from djoser.serializers import UserCreateSerializer
 from .models import CustomUser, Files, UserUser
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, FileField
 from rest_framework.serializers import Serializer, FileField
 
 
