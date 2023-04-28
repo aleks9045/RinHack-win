@@ -40,7 +40,9 @@ class FileUploadViewSet(ModelViewSet):
             return Response({'response': res_dict})
         elif request.data['delete'] == 'yes':
             link = request.data['link']
-            Files.objects.filter(file=link).delete()
+            file = link.split('/')[-2] + link.split('/')[-1]
+            print(file)
+            Files.objects.filter(file=file).delete()
             return Response({'response': 'done'})
 
 
