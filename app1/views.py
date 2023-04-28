@@ -10,13 +10,13 @@ from .algorithms import main_algorithm
 
 class UserUserView(APIView):
     def get(self, request):
-        lst = Hshs.objects.all().values()
+        lst = UserUser.objects.all().values()
         return Response({'response': list(lst)})
 
     def post(self, request):
         fp = request.data['fp']
         UserUser.objects.filter(fp=fp).delete()
-        new_post = Hshs.objects.create(
+        new_post = UserUser.objects.create(
             fp=fp,
             username=request.data['username']
         )
