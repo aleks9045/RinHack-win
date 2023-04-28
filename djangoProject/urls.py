@@ -4,10 +4,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from app1.views import Files_ViewSet, UserDataView
-
+from app1.views import Files_ViewSet, UserDataView, UserUser_ViewSet
 router = routers.DefaultRouter()
 router.register('files', Files_ViewSet)
+router2 = routers.DefaultRouter()
+router2.register('users', UserUser_ViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -15,7 +16,8 @@ urlpatterns = [
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.jwt")),
     path('fileapi/', include(router.urls)),
-    path('userapi/', UserDataView.as_view()),
+    path('hshapi/', UserDataView.as_view()),
+    path('userapi/', include(router2.urls))
 ]
 
 

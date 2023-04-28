@@ -3,14 +3,20 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
-from .serializers import Files_Serialaizer
-from .models import Files, Hshs
+from .serializers import Files_Serialaizer, UserUserSerialaizer
+from .models import Files, Hshs, UserUser
 from .algorithms import main_algorithm
 
 
 class Files_ViewSet(ModelViewSet):
     queryset = Files.objects.all()
     serializer_class = Files_Serialaizer
+    permission_classes = (AllowAny,)
+
+
+class UserUser_ViewSet(ModelViewSet):
+    queryset = UserUser.objects.all()
+    serializer_class = UserUserSerialaizer
     permission_classes = (AllowAny,)
 
 

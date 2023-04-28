@@ -4,8 +4,7 @@ from .models import UserUser, Files
 
 
 def main_algorithm(new, old):
-    new = str(new).replace("'", '"').replace('True', 'true').replace('False', 'false')
-    jsn = json.loads(new)
+    jsn = json.loads(str(new).replace("'", '"').replace('True', 'true').replace('False', 'false'))
     stroka = ''
     for iterator in jsn:
         stroka += str(jsn[iterator]['value'])

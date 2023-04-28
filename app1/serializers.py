@@ -1,5 +1,5 @@
 from djoser.serializers import UserCreateSerializer
-from .models import CustomUser, Files
+from .models import CustomUser, Files, UserUser
 from rest_framework.serializers import ModelSerializer
 
 
@@ -12,10 +12,10 @@ class UserCreateSerializer(UserCreateSerializer):
 class Files_Serialaizer(ModelSerializer):
     class Meta:
         model = Files
-        fields = ('number', 'user', 'name', 'weight', 'extension', 'upload_date')
+        fields = ('email', 'name', 'weight', 'extension', 'upload_date')
 
 
-# class UserDataSerialaizer(ModelSerializer):
-#     class Meta:
-#         model = Files
-#         fields = ('ip', 'lang', 'all_lang', 'plugins', 'browser', 'OS', 'display', 'cords')
+class UserUserSerialaizer(ModelSerializer):
+    class Meta:
+        model = UserUser
+        fields = ("username", "email", "fp")
