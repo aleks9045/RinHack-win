@@ -15,10 +15,10 @@ def main_algorithm(new, old):
                 user_data = {'email': '', 'username': ''}
                 files_data = ''
             elif not list(Files.objects.all().values()):
-                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email'))
+                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email', 'fp'))
                 files_data = ''
             else:
-                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email'))
+                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email', 'fp'))
                 files_data = list(Files.objects.all().filter(email=user_data[0]['email']).values().all())
             return [True, user_data, files_data]
     return [False, hsh]
