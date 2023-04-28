@@ -13,7 +13,7 @@ class UserCreateSerializer(UserCreateSerializer):
 class Files_Serialaizer(ModelSerializer):
     class Meta:
         model = Files
-        fields = ('fp', 'file')
+        fields = ('id', 'fp', 'file')
 
 
 class UserUserSerialaizer(ModelSerializer):

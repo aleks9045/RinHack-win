@@ -1,4 +1,5 @@
 from django.forms import model_to_dict
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
@@ -26,6 +27,18 @@ class UserUserView(APIView):
 class FilesViewSet(ModelViewSet):
     queryset = Files.objects.all()
     serializer_class = Files_Serialaizer
+
+    @action(detail=False, methods=['post'])
+    def download(self, request):
+        fp = request.data['fp']
+        file_path = list(Files.objects.all().filter(fp=fp).values())
+        file_paths = []
+        print(file_path)
+        for i in file_path:
+            for count, j in enumerate(i.values()):
+                if count == 2:
+                    file_paths.append('http://127.0.0.1:8000/media/' + j)
+        return Response({'response': file_paths})
 
 
 class UserDataView(APIView):

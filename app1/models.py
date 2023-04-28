@@ -25,7 +25,7 @@ class UserUser(models.Model):
 
 class Files(models.Model):
     fp = models.TextField()
-    file = models.FileField('file', upload_to='files')
+    file = models.FileField('file', upload_to='files', blank=True)
 
     def __str__(self):
         return str(self.fp)
