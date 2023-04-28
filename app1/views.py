@@ -36,7 +36,7 @@ class FileUploadViewSet(ModelViewSet):
             for i in file_path:
                 for count, j in enumerate(i.values()):
                     if count == 2:
-                        res_dict[j.split("/")[-1]] = 'http://85.192.41.43/media/' + j
+                        res_dict[j.split("/")[-1]] = 'http://190.115.29.135/media/' + j
             return Response({'response': res_dict})
         elif request.data['delete'] == 'yes':
             fp = request.data['fp']
