@@ -3,8 +3,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.decorators import action
-from rest_framework.parsers import FileUploadParser
-from rest_framework.exceptions import ParseError
+from rest_framework.parsers import FormParser, MultiPartParser
 from .serializers import Files_Serialaizer
 from .models import Files, Hshs, UserUser
 from .algorithms import main_algorithm
@@ -25,15 +24,13 @@ class UserUserView(APIView):
         return Response({'response': model_to_dict(new_post)})
 
 
-class FilesViewSet(APIView):
-    def put(self, request, format=None):
-        if 'file' not in request.data:
-            raise ParseError("Empty content")
-        f = request.data['file']
-        fp = request.data['fp']
-        Files.file.save(f.name, f, save=True)
-        Files.file.save(fp, f, save=True)
-        return Response({'response': model_to_dict(Files.objects.all().values())})
+class FileUploadViewSet(ModelViewSet):
+    queryset = Files.objects.all()
+    serializer_class = Files_Serialaizer
+    parser_classes = (MultiPartParser, FormParser,)
+
+    def perform_create(self, serializer):
+        serializer.save(file=self.request.data.get('file'))
 
     @action(detail=False, methods=['post'])
     def download(self, request):
