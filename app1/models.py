@@ -26,7 +26,7 @@ class UserUser(models.Model):
 class Files(models.Model):
     fp = models.TextField()
     file = models.FileField(upload_to='files', blank=True)
-    name = models.CharField(max_length=64, blank=True)
+    link = models.CharField(max_length=64, blank=True)
 
     def __str__(self):
         return str(self.fp)

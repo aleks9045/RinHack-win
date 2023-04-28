@@ -30,8 +30,8 @@ class FileUploadViewSet(ModelViewSet):
     @action(detail=False, methods=['post'])
     def downloaddelete(self, request):
         if request.data['delete'] == 'no':
-            fp = request.data['fp']
-            file_path = list(Files.objects.all().filter(fp=fp).values())
+            link = request.data['link']
+            file_path = list(Files.objects.all().filter(file=link).values())
             res_dict = {}
             for i in file_path:
                 for count, j in enumerate(i.values()):
