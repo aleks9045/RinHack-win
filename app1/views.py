@@ -40,6 +40,9 @@ class FilesViewSet(ModelViewSet):
                     file_paths.append('http://127.0.0.1:8000/media/' + j)
         return Response({'response': file_paths})
 
+    def perform_create(self, serializer):
+        serializer.save(img=self.request.data.get('file'))
+
 
 class UserDataView(APIView):
     def get(self, request):
