@@ -1,9 +1,9 @@
 from django.forms import model_to_dict
+from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.decorators import action
-from rest_framework.parsers import FormParser, MultiPartParser
 from .serializers import Files_Serialaizer
 from .models import Files, Hshs, UserUser
 from .algorithms import main_algorithm
@@ -27,10 +27,16 @@ class UserUserView(APIView):
 class FileUploadViewSet(ModelViewSet):
     queryset = Files.objects.all()
     serializer_class = Files_Serialaizer
-    parser_classes = (MultiPartParser, FormParser,)
 
-    def perform_create(self, serializer):
-        serializer.save(file=self.request.data.get('file'))
+    @action(detail=True, methods=['PUT'], serializer_class=Files_Serialaizer, parser_classes=[MultiPartParser],)
+    def upload(self, request, pk):
+        obj = self.get_object()
+        serializer = self.serializer_class(obj, data=request.data,
+                                           partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
     @action(detail=False, methods=['post'])
     def download(self, request):
