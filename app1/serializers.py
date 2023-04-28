@@ -12,7 +12,7 @@ class UserCreateSerializer(UserCreateSerializer):
 class Files_Serialaizer(ModelSerializer):
     class Meta:
         model = Files
-        fields = ('email', 'name', 'weight', 'extension', 'upload_date')
+        fields = ('fp', 'name', 'weight', 'extension', 'upload_date')
 
 
 class UserUserSerialaizer(ModelSerializer):

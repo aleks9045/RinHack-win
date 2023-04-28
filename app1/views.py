@@ -8,16 +8,20 @@ from .models import Files, Hshs, UserUser
 from .algorithms import main_algorithm
 
 
-class Files_ViewSet(ModelViewSet):
-    queryset = Files.objects.all()
-    serializer_class = Files_Serialaizer
-    permission_classes = (AllowAny,)
-
-
 class UserUser_ViewSet(ModelViewSet):
     queryset = UserUser.objects.all()
     serializer_class = UserUserSerialaizer
     permission_classes = (AllowAny,)
+
+
+class FilesView(APIView):
+    def get(self, request):
+        lst = Hshs.objects.all().values()
+        return Response({'response': list(lst)})
+
+    def post(self, request):
+        new_data = request.data['fp']
+        return Response({'response': ''})
 
 
 class UserDataView(APIView):

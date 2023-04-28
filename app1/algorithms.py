@@ -12,7 +12,7 @@ def main_algorithm(new, old):
     for i in old:
         if i['fp'] == hsh:
             if not list(UserUser.objects.all().values()):
-                user_data = ''
+                user_data = {'email': '', 'username': ''}
                 files_data = ''
             elif not list(Files.objects.all().values()):
                 user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email'))
