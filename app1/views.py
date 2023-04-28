@@ -29,9 +29,7 @@ class FileUploadViewSet(ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def downloaddelete(self, request):
-        print(request.data['delete'])
         if request.data['delete'] == 'no':
-            print(1234123412342)
             fp = request.data['fp']
             file_path = list(Files.objects.all().filter(fp=fp).values())
             res_dict = {}
