@@ -11,9 +11,11 @@ def main_algorithm(new, old):
     hsh = hashlib.sha3_512(stroka.encode('utf-8')).hexdigest()
     for i in old:
         if i['fp'] == hsh:
-            print(list(UserUser.objects.all().values()))
             if not list(UserUser.objects.all().values()):
                 user_data = ''
+                files_data = ''
+            elif not list(Files.objects.all().values()):
+                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email'))
                 files_data = ''
             else:
                 user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email'))
