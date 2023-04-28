@@ -1,6 +1,7 @@
 from djoser.serializers import UserCreateSerializer
 from .models import CustomUser, Files, UserUser
 from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import Serializer, FileField
 
 
 class UserCreateSerializer(UserCreateSerializer):
@@ -12,7 +13,7 @@ class UserCreateSerializer(UserCreateSerializer):
 class Files_Serialaizer(ModelSerializer):
     class Meta:
         model = Files
-        fields = ('fp', 'name', 'weight', 'extension', 'upload_date')
+        fields = ('fp', 'file')
 
 
 class UserUserSerialaizer(ModelSerializer):
