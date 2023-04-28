@@ -12,13 +12,13 @@ def main_algorithm(new, old):
     for i in old:
         if i['fp'] == hsh:
             if not list(UserUser.objects.all().values()):
-                user_data = {'email': '', 'username': ''}
+                user_data = {'username': ''}
                 files_data = ''
             elif not list(Files.objects.all().values()):
-                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email', 'fp'))
+                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'fp'))
                 files_data = ''
             else:
-                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'email', 'fp'))
+                user_data = list(UserUser.objects.all().filter(fp=hsh).values('username', 'fp'))
                 files_data = list(Files.objects.all().filter(email=user_data[0]['email']).values().all())
             return [True, user_data, files_data]
     return [False, hsh]

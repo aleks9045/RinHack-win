@@ -18,4 +18,4 @@ class Files_Serialaizer(ModelSerializer):
 class UserUserSerialaizer(ModelSerializer):
     class Meta:
         model = UserUser
-        fields = ("username", "email", "fp")
+        fields = ("username", "fp")

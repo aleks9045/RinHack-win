@@ -17,7 +17,6 @@ class CustomUser(AbstractUser):
 
 class UserUser(models.Model):
     username = models.CharField(max_length=255, blank=True)
-    email = models.EmailField(max_length=255, unique=True, blank=True)
     fp = models.TextField(blank=True)
 
     def __str__(self):
