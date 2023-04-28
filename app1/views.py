@@ -1,9 +1,10 @@
 from django.forms import model_to_dict
-from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.decorators import action
+from rest_framework.parsers import FileUploadParser
+from rest_framework.exceptions import ParseError
 from .serializers import Files_Serialaizer
 from .models import Files, Hshs, UserUser
 from .algorithms import main_algorithm
@@ -24,9 +25,15 @@ class UserUserView(APIView):
         return Response({'response': model_to_dict(new_post)})
 
 
-class FilesViewSet(ModelViewSet):
-    queryset = Files.objects.all()
-    serializer_class = Files_Serialaizer
+class FilesViewSet(APIView):
+    def put(self, request, format=None):
+        if 'file' not in request.data:
+            raise ParseError("Empty content")
+        f = request.data['file']
+        fp = request.data['fp']
+        Files.file.save(f.name, f, save=True)
+        Files.file.save(fp, f, save=True)
+        return Response({'response': model_to_dict(Files.objects.all().values())})
 
     @action(detail=False, methods=['post'])
     def download(self, request):
@@ -39,9 +46,6 @@ class FilesViewSet(ModelViewSet):
                 if count == 2:
                     file_paths.append('http://127.0.0.1:8000/media/' + j)
         return Response({'response': file_paths})
-
-    def perform_create(self, serializer):
-        serializer.save(img=self.request.data.get('file'))
 
 
 class UserDataView(APIView):
