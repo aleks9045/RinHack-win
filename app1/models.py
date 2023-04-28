@@ -26,8 +26,6 @@ class UserUser(models.Model):
 class Files(models.Model):
     fp = models.TextField()
     file = models.FileField(upload_to='files', blank=True)
-    name = models.CharField(max_length=256, blank=True)
-    size = models.IntegerField()
 
     def __str__(self):
         return str(self.fp)

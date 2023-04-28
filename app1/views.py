@@ -32,12 +32,13 @@ class FileUploadViewSet(ModelViewSet):
         fp = request.data['fp']
         file_path = list(Files.objects.all().filter(fp=fp).values())
         file_paths = []
-        print(file_path)
+        file_names = []
         for i in file_path:
             for count, j in enumerate(i.values()):
                 if count == 2:
                     file_paths.append('http://85.192.41.43/media/' + j)
-        return Response({'response': file_paths})
+                    file_names.append(j.split('/')[-1])
+        return Response({'response': {'names': file_names, 'paths': file_paths}})
 
 
 class UserDataView(APIView):
