@@ -41,7 +41,7 @@ class FilesViewSet(ModelViewSet):
         return Response({'response': file_paths})
 
     def perform_create(self, serializer):
-        serializer.save(img=self.request.data.get('file'))
+        serializer.save(file=self.request.data.get('file'))
 
 
 class UserDataView(APIView):
