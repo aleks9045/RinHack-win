@@ -25,13 +25,18 @@ class UserUser(models.Model):
 
 class Files(models.Model):
     fp = models.TextField()
+    file = models.FileField('file', upload_to='files')
+
+    def __str__(self):
+        return str(self.fp)
+
+
+class FilesInfo(models.Model):
+    fp = models.TextField()
     name = models.CharField('name', max_length=255, blank=True)
     weight = models.IntegerField('weight', blank=True)
     extension = models.CharField('extension', max_length=18, blank=True)
     upload_date = models.DateTimeField('date', auto_now=True, blank=True)
-
-    def __str__(self):
-        return str(self.fp)
 
 
 class Hshs(models.Model):
