@@ -38,7 +38,7 @@ class FileUploadViewSet(ModelViewSet):
         for i in file_path:
             for count, j in enumerate(i.values()):
                 if count == 2:
-                    file_paths.append('http://127.0.0.1:8000/media/' + j)
+                    file_paths.append('http://85.192.41.43/media/' + j)
         return Response({'response': file_paths})
 
 
