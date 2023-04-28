@@ -31,14 +31,12 @@ class FileUploadViewSet(ModelViewSet):
     def download(self, request):
         fp = request.data['fp']
         file_path = list(Files.objects.all().filter(fp=fp).values())
-        file_paths = []
-        file_names = []
+        res_dict = {}
         for i in file_path:
             for count, j in enumerate(i.values()):
                 if count == 2:
-                    file_paths.append('http://85.192.41.43/media/' + j)
-                    file_names.append(j.split('/')[-1])
-        return Response({'response': {'names': file_names, 'paths': file_paths}})
+                    res_dict[j.split("/")[-1]] = 'http://85.192.41.43/media/' + j
+        return Response({'response': res_dict})
 
 
 class UserDataView(APIView):
