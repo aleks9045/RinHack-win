@@ -28,15 +28,22 @@ class FileUploadViewSet(ModelViewSet):
     serializer_class = Files_Serialaizer
 
     @action(detail=False, methods=['post'])
-    def download(self, request):
-        fp = request.data['fp']
-        file_path = list(Files.objects.all().filter(fp=fp).values())
-        res_dict = {}
-        for i in file_path:
-            for count, j in enumerate(i.values()):
-                if count == 2:
-                    res_dict[j.split("/")[-1]] = 'http://85.192.41.43/media/' + j
-        return Response({'response': res_dict})
+    def downloaddelete(self, request):
+        print(request.data['delete'])
+        if request.data['delete'] == 'no':
+            print(1234123412342)
+            fp = request.data['fp']
+            file_path = list(Files.objects.all().filter(fp=fp).values())
+            res_dict = {}
+            for i in file_path:
+                for count, j in enumerate(i.values()):
+                    if count == 2:
+                        res_dict[j.split("/")[-1]] = 'http://85.192.41.43/media/' + j
+            return Response({'response': res_dict})
+        elif request.data['delete'] == 'yes':
+            fp = request.data['fp']
+            Files.objects.filter(fp=fp).delete()
+            return Response({'response': 'done'})
 
 
 class UserDataView(APIView):

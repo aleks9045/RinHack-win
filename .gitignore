@@ -2,5 +2,6 @@
 venv
 .env
 docker-compose.yml.save
+nginx/nginx.conf.save
 __pycache__/
 *.py[cod]
