@@ -11,8 +11,10 @@ def main_algorithm(new, old):
             stroka += str(jsn[iterator]['value'])
             print(stroka)
         hsh = hashlib.sha3_512(stroka.encode('utf-8')).hexdigest()
+        print('hash done')
     except Exception as ex:
         hsh = new
+        print('NO HASH')
     for i in old:
         if i['fp'] == hsh:
             if not list(UserUser.objects.all().values()):
