@@ -11,9 +11,9 @@ router.register('file', FileUploadViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("auth/", include("app1.urls")),
-    path("auth/", include("djoser.urls")),
-    path("auth/", include("djoser.urls.jwt")),
+    # path("auth/", include("app1.urls")),
+    # path("auth/", include("djoser.urls")),
+    # path("auth/", include("djoser.urls.jwt")),
     path('fileapi/', include(router.urls)),
     path('hshapi/', UserDataView.as_view()),
     path('userapi/', UserUserView.as_view())
