@@ -4,12 +4,15 @@ from .models import UserUser, Files
 
 
 def main_algorithm(new, old):
-    jsn = json.loads(str(new).replace("'", '"').replace('True', 'true').replace('False', 'false'))
-    stroka = ''
-    for iterator in jsn:
-        stroka += str(jsn[iterator]['value'])
-        print(stroka)
-    hsh = hashlib.sha3_512(stroka.encode('utf-8')).hexdigest()
+    try:
+        jsn = json.loads(str(new).replace("'", '"').replace('True', 'true').replace('False', 'false'))
+        stroka = ''
+        for iterator in jsn:
+            stroka += str(jsn[iterator]['value'])
+            print(stroka)
+        hsh = hashlib.sha3_512(stroka.encode('utf-8')).hexdigest()
+    except Exception as ex:
+        hsh = new
     for i in old:
         if i['fp'] == hsh:
             if not list(UserUser.objects.all().values()):
